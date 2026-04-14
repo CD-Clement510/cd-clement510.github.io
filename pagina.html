@@ -1,0 +1,1048 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ESTANQUILLO ACT | Investigación Estadística y Actuarial</title>
+    <style>
+        /* Estilos generales */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        
+        :root {
+            --primary:  #e53e3e; /* Color rojo */
+            --secondary: #572364; /* Verde más  claro */
+            --accent: #e53e3e;
+            --light: #f7fafc;
+            --dark: #000000; /* Cambiado a negro puro */
+            --gray: #000000; /* Gris más oscuro */
+            --success: #38a169;
+            --gold: #FFD700; /* Cambiado a amarillo brillante */
+            --date-color: #e53e3e; /* Color rojo para las fechas */
+        }
+        
+        body {
+            background-color: #f9f9f9;
+            color: #000000; /* Cambiado a negro para mejor contraste */
+            line-height: 1.6;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+        
+        /* Encabezado */
+        header {
+            background: linear-gradient(135deg, var(--primary) 0%, var(--secondary) 100%);
+            color: white;
+            padding: 1.5rem 0;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+        
+        .header-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .logo {
+            display: flex;
+            align-items: center;
+        }
+        
+        .logo-icon {
+            font-size: 2.5rem;
+            margin-right: 15px;
+            color: var(--gold);
+        }
+        
+        .logo-main {
+            display: flex;
+            flex-direction: column;
+        }
+        
+        .logo-slogan {
+            font-size: 0.8rem;
+            font-weight: 600;
+            color: var(--gold);
+            margin-bottom: 5px;
+            letter-spacing: 1px;
+        }
+        
+        .logo-text {
+            font-size: 1.8rem;
+            font-weight: 700;
+            color: white;
+        }
+        
+        .logo-subtitle {
+            display: block;
+            font-size: 0.9rem;
+            font-weight: 300;
+            color: var(--light);
+            margin-top: -2px;
+        }
+        
+        nav ul {
+            display: flex;
+            list-style: none;
+        }
+        
+        nav ul li {
+            margin-left: 25px;
+        }
+        
+        nav ul li a {
+            color: white;
+            text-decoration: none;
+            font-weight: 500;
+            transition: color 0.3s;
+            position: relative;
+        }
+        
+        nav ul li a:hover {
+            color: var(--gold);
+        }
+        
+        nav ul li a::after {
+            content: '';
+            position: absolute;
+            width: 0;
+            height: 2px;
+            bottom: -5px;
+            left: 0;
+            background-color: var(--gold);
+            transition: width 0.3s;
+        }
+        
+        nav ul li a:hover::after {
+            width: 100%;
+        }
+        
+        /* Hero Section */
+        .hero {
+            background: linear-gradient(135deg, var(--primary) 0%, var(--secondary) 100%);
+            color: white;
+            padding: 5rem 0;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .hero::before {
+            content: "{}";
+            position: absolute;
+            font-size: 20rem;
+            opacity: 0.05;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            font-family: monospace;
+            color: var(--gold);
+        }
+        
+        .hero h1 {
+            font-size: 2.8rem;
+            margin-bottom: 1.5rem;
+            font-weight: 700;
+            position: relative;
+            color: var(--gold); /* Cambiado a amarillo */
+        }
+        
+        .hero-tagline {
+            font-size: 1.8rem;
+            color: var(--gold);
+            font-weight: 600;
+            margin-bottom: 1rem;
+            position: relative;
+        }
+        
+        .hero p {
+            font-size: 1.2rem;
+            max-width: 700px;
+            margin: 0 auto 2rem;
+            position: relative;
+            color: white;
+        }
+        
+        .hero-stats {
+            display: flex;
+            justify-content: center;
+            gap: 3rem;
+            margin-top: 3rem;
+            position: relative;
+        }
+        
+        .stat-item {
+            text-align: center;
+        }
+        
+        .stat-number {
+            font-size: 2.5rem;
+            font-weight: 700;
+            color: var(--gold);
+        }
+        
+        .stat-label {
+            font-size: 0.9rem;
+            opacity: 0.9;
+            color: white;
+        }
+        
+        .cta-button {
+            display: inline-block;
+            background-color: var(--accent);
+            color: white;
+            padding: 14px 35px;
+            border-radius: 30px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: all 0.3s;
+            box-shadow: 0 4px 15px rgba(229, 62, 62, 0.3);
+            position: relative;
+            margin-top: 1rem;
+        }
+        
+        .cta-button:hover {
+            background-color: #c53030;
+            transform: translateY(-3px);
+            box-shadow: 0 6px 20px rgba(229, 62, 62, 0.4);
+        }
+        
+        /* Contenido principal */
+        main {
+            display: flex;
+            margin: 50px 0;
+            gap: 40px;
+        }
+        
+        .blog-posts {
+            flex: 2;
+        }
+        
+        .section-title {
+            font-size: 1.8rem;
+            color: var(--dark); /* Cambiado a negro */
+            margin-bottom: 25px;
+            padding-bottom: 10px;
+            border-bottom: 2px solid var(--gold);
+            display: inline-block;
+        }
+        
+        /* Artículos del blog */
+        .post {
+            background-color: white;
+            margin-bottom: 40px;
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.08);
+            transition: transform 0.3s, box-shadow 0.3s;
+            border-left: 4px solid var(--gold);
+        }
+        
+        .post:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 25px rgba(0,0,0,0.15);
+        }
+        
+        .post-header {
+            background: linear-gradient(90deg, var(--primary), var(--secondary));
+            color: white;
+            padding: 15px 25px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .post-header h3 {
+            color: white;
+        }
+        
+        .post-icon {
+            font-size: 1.5rem;
+            color: var(--gold);
+        }
+        
+        .post-content {
+            padding: 25px;
+        }
+        
+        .post-title {
+            font-size: 1.5rem;
+            margin-bottom: 10px;
+            color: var(--dark); /* Cambiado a negro */
+        }
+        
+        .post-meta {
+            color: var(--date-color); /* Color rojo para las fechas */
+            font-size: 0.9rem;
+            margin-bottom: 15px;
+            display: flex;
+            align-items: center;
+            flex-wrap: wrap;
+            font-weight: 600; /* Hacer el texto más grueso */
+        }
+        
+        .post-meta i {
+            margin-right: 5px;
+        }
+        
+        .post-category {
+            display: inline-block;
+            background-color: var(--gold);
+            color: var(--dark); /* Cambiado a negro */
+            padding: 3px 10px;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            margin-left: 10px;
+            font-weight: 600;
+        }
+        
+        .post-excerpt {
+            margin-bottom: 20px;
+            color: var(--dark); /* Cambiado a negro */
+        }
+        
+        .post-features {
+            display: flex;
+            gap: 15px;
+            margin-bottom: 15px;
+            flex-wrap: wrap;
+        }
+        
+        .feature {
+            display: flex;
+            align-items: center;
+            background-color: var(--light);
+            padding: 5px 10px;
+            border-radius: 4px;
+            font-size: 0.85rem;
+            color: var(--dark); /* Cambiado a negro */
+        }
+        
+        .feature-icon {
+            margin-right: 5px;
+            color: var(--gold);
+        }
+        
+        .read-more {
+            display: inline-block;
+            background-color: transparent;
+            color: var(--dark);
+            padding: 8px 20px;
+            border-radius: 30px;
+            text-decoration: none;
+            font-weight: 600;
+            border: 2px solid var(--gold);
+            transition: all 0.3s;
+        }
+        
+        .read-more:hover {
+            background-color: var(--gold);
+            color: var(--dark); /* Cambiado a negro */
+        }
+        
+        /* Sidebar */
+        .sidebar {
+            flex: 1;
+        }
+        
+        .sidebar-widget {
+            background-color: white;
+            padding: 25px;
+            border-radius: 8px;
+            margin-bottom: 30px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.08);
+        }
+        
+        .sidebar-widget h3 {
+            color: var(--dark); /* Cambiado a negro */
+            margin-bottom: 20px;
+            padding-bottom: 10px;
+            border-bottom: 1px solid #eee;
+            font-size: 1.3rem;
+        }
+        
+        .sidebar-widget p {
+            color: #000000;
+            font-weight: 500;
+        }
+        
+        .about-me {
+            text-align: center;
+        }
+        
+        .team-icon {
+            font-size: 3rem;
+            color: var(--gold);
+            margin-bottom: 15px;
+        }
+        
+        .categories ul {
+            list-style: none;
+        }
+        
+        .categories ul li {
+            margin-bottom: 10px;
+            padding-bottom: 10px;
+            border-bottom: 1px dashed #eee;
+        }
+        
+        .categories ul li:last-child {
+            border-bottom: none;
+        }
+        
+        .categories ul li a {
+            color: var(--dark); /* Cambiado a negro */
+            text-decoration: none;
+            transition: color 0.3s;
+            display: flex;
+            justify-content: space-between;
+        }
+        
+        .categories ul li a:hover {
+            color: var(--gold);
+        }
+        
+        .categories ul li a span {
+            background-color: var(--light);
+            color: var(--dark); /* Cambiado a negro */
+            border-radius: 10px;
+            padding: 2px 8px;
+            font-size: 0.8rem;
+        }
+        
+        .tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+        }
+        
+        .tag {
+            background-color: var(--light);
+            color: var(--dark); /* Cambiado a negro */
+            padding: 5px 12px;
+            border-radius: 20px;
+            font-size: 0.85rem;
+            transition: all 0.3s;
+            text-decoration: none;
+        }
+        
+        .tag:hover {
+            background-color: var(--gold);
+            color: var(--dark); /* Cambiado a negro */
+        }
+        
+        .services-list {
+            list-style: none;
+        }
+        
+        .services-list li {
+            margin-bottom: 10px;
+            padding-left: 25px;
+            position: relative;
+            color: var(--dark); /* Cambiado a negro */
+        }
+        
+        .services-list li:before {
+            content: "▸";
+            position: absolute;
+            left: 0;
+            color: var(--gold);
+            font-weight: bold;
+        }
+        
+        /* Newsletter */
+        .newsletter {
+            background: linear-gradient(135deg, var(--primary) 0%, var(--secondary) 100%);
+            color: white;
+            padding: 3rem 0;
+            text-align: center;
+            margin: 3rem 0;
+        }
+        
+        .newsletter-form {
+            max-width: 500px;
+            margin: 0 auto;
+            display: flex;
+            gap: 10px;
+        }
+        
+        .newsletter-input {
+            flex: 1;
+            padding: 12px 15px;
+            border: none;
+            border-radius: 4px;
+            font-size: 1rem;
+        }
+        
+        .newsletter-button {
+            background-color: var(--accent);
+            color: white;
+            border: none;
+            padding: 0 25px;
+            border-radius: 4px;
+            cursor: pointer;
+            font-weight: 600;
+            transition: background-color 0.3s;
+        }
+        
+        .newsletter-button:hover {
+            background-color: #c53030;
+        }
+        
+        /* Pie de página */
+        footer {
+            background-color: var(--primary);
+            color: white;
+            padding: 40px 0 20px;
+        }
+        
+        .footer-content {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 30px;
+        }
+        
+        .footer-column {
+            flex: 1;
+            padding: 0 15px;
+        }
+        
+        .footer-column h3 {
+            font-size: 1.2rem;
+            margin-bottom: 20px;
+            color: var(--gold);
+        }
+        
+        .footer-column p, .footer-column a {
+            color: white;
+            margin-bottom: 10px;
+            display: block;
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+        
+        .footer-column a:hover {
+            color: var(--gold);
+        }
+        
+        .copyright {
+            text-align: center;
+            padding-top: 20px;
+            border-top: 1px solid #34495e;
+            color: var(--gold);
+            font-size: 0.9rem;
+        }
+        
+        /* Responsive */
+        @media (max-width: 992px) {
+            main {
+                flex-direction: column;
+            }
+            
+            .footer-content {
+                flex-direction: column;
+            }
+            
+            .footer-column {
+                margin-bottom: 30px;
+            }
+            
+            .newsletter-form {
+                flex-direction: column;
+            }
+        }
+        
+        @media (max-width: 768px) {
+            .header-content {
+                flex-direction: column;
+                text-align: center;
+            }
+            
+            nav ul {
+                margin-top: 20px;
+                justify-content: center;
+                flex-wrap: wrap;
+            }
+            
+            nav ul li {
+                margin: 0 10px 10px;
+            }
+            
+            .hero h1 {
+                font-size: 2rem;
+            }
+            
+            .hero-tagline {
+                font-size: 1.4rem;
+            }
+            
+            .hero p {
+                font-size: 1rem;
+            }
+            
+            .hero-stats {
+                flex-wrap: wrap;
+            }
+        }
+        
+        /* Iconos */
+        .icon {
+            display: inline-block;
+            width: 20px;
+            text-align: center;
+            margin-right: 8px;
+        }
+        
+        /* Estado vacío */
+        .empty-state {
+            text-align: center;
+            padding: 3rem 0;
+            color: var(--dark); /* Cambiado a negro */
+        }
+        
+        .empty-icon {
+            font-size: 4rem;
+            margin-bottom: 1rem;
+            opacity: 0.5;
+            color: var(--gold);
+        }
+        
+        .risk-badge {
+            display: inline-block;
+            background-color: var(--accent);
+            color: white;
+            padding: 5px 15px;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            font-weight: 600;
+            margin-left: 10px;
+            vertical-align: middle;
+        }
+
+        /* Nuevos estilos para secciones adicionales */
+        .servicios-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 20px;
+            margin-top: 30px;
+        }
+
+        .servicio-item {
+            background: white;
+            padding: 25px;
+            border-radius: 8px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.08);
+            border-left: 4px solid var(--gold);
+            transition: transform 0.3s;
+        }
+
+        .servicio-item:hover {
+            transform: translateY(-5px);
+        }
+
+        .servicio-item h3 {
+            color: var(--dark);
+            margin-bottom: 15px;
+            font-size: 1.3rem;
+        }
+
+        .servicio-item p {
+            color: var(--dark);
+            line-height: 1.6;
+        }
+
+        .contact-form {
+            max-width: 600px;
+            margin: 30px auto 0;
+            background: white;
+            padding: 30px;
+            border-radius: 8px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.08);
+        }
+
+        .contact-form input,
+        .contact-form textarea {
+            width: 100%;
+            padding: 12px;
+            margin-bottom: 15px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            font-size: 1rem;
+            font-family: inherit;
+        }
+
+        .contact-form textarea {
+            resize: vertical;
+            min-height: 120px;
+        }
+
+        .contact-form button {
+            background: var(--gold);
+            color: var(--dark);
+            border: none;
+            padding: 12px 30px;
+            border-radius: 4px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: background 0.3s;
+            width: 100%;
+        }
+
+        .contact-form button:hover {
+            background: #e6c200;
+        }
+
+        .pdf-download {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            background: var(--primary);
+            color: white;
+            padding: 10px 20px;
+            border-radius: 6px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: background 0.3s;
+            margin-top: 10px;
+        }
+
+        .pdf-download:hover {
+            background: #c53030;
+        }
+    </style>
+</head>
+<body>
+    <!-- Encabezado 
+    <header>
+    /* Nuevos estilos para secciones adicionales 
+  
+      <div class="separator" style="clear: both;"><a href="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEjglUvk-Lww3r_OkdExZ707UH95PUeAziQzlOOCkzQavzyvJ2wwA-mIOqfSHb9Hh5DHClZzqkuYiU0o_P3kIvz_7eQGpqKUoSw2WniLtCOS1p6AeZm0hBqHuQCTwfotXdxr5bIN8wmF6DUxpFOfGitxJoNmH__fgKq-gcMK0DxcyIpxmZiZkW3DjdUXsO3l/s558/Logo_Formulario.png" style="display: block; padding: 1em 0; text-align: center; "><img alt="" border="0" width="400" data-original-height="228" data-original-width="558" src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEjglUvk-Lww3r_OkdExZ707UH95PUeAziQzlOOCkzQavzyvJ2wwA-mIOqfSHb9Hh5DHClZzqkuYiU0o_P3kIvz_7eQGpqKUoSw2WniLtCOS1p6AeZm0hBqHuQCTwfotXdxr5bIN8wmF6DUxpFOfGitxJoNmH__fgKq-gcMK0DxcyIpxmZiZkW3DjdUXsO3l/s400/Logo_Formulario.png"/></a></div> -->
+  	<header>
+      <div class="separator" style="clear: both;"><a href="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEiiFcLogxb2YtmpnzHTrScKp0ww9Z8urnseOSQ7Pn4hyphenhyphen8dRhc_RQphIYkxSYHIqPPN1B1ir1vOElPT1pc1K9T_Ko5xDR9e-FrRugoU1TdpKRG4pIteYX0-JuQTCeFWzWGlW6C5KgOdPrWvq2Y-v34dbRaBqbUN8mvBjpYK6Tj1-I4iCKzPJFKFx_kEfkeCD/s500/EM.png" style="display: block; padding: 1em 0; text-align: center; "><img alt="" border="0" width="400" data-original-height="500" data-original-width="500" src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEiiFcLogxb2YtmpnzHTrScKp0ww9Z8urnseOSQ7Pn4hyphenhyphen8dRhc_RQphIYkxSYHIqPPN1B1ir1vOElPT1pc1K9T_Ko5xDR9e-FrRugoU1TdpKRG4pIteYX0-JuQTCeFWzWGlW6C5KgOdPrWvq2Y-v34dbRaBqbUN8mvBjpYK6Tj1-I4iCKzPJFKFx_kEfkeCD/s400/EM.png"/></a></div>
+
+        <div class="container header-content">
+            <div class="logo">
+                <div class="logo-icon">📊</div>
+                <div class="logo-main">
+                    <div class="logo-subtitle">Análisis estadístico & actuarial</div>
+                </div>
+            </div>
+            <nav>
+                <ul>
+                    <li><a href="#inicio">Inicio</a></li>
+                    <li><a href="#documentos">Documentos</a></li>
+                    <li><a href="#informacion">Información</a></li>
+                    <li><a href="#servicios">Servicios</a></li>
+                    <li><a href="#contacto">Contacto</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section id="inicio" class="hero">
+        <div class="container">
+            <h1>ESTANQUILLO ACT</h1>
+            <p>Un espacio dedicado a la investigación estadística, análisis actuarial y modelado matemático aplicado a diversos campos del conocimiento.</p>
+            <a class="cta-button" href="#articulos">Explora Nuestros documentos</a>
+            
+            <div class="hero-stats">
+                <div class="stat-item">
+                    <div class="stat-number">1</div>
+                    <div class="stat-label">Investigaciones publicadas</div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-number">2</div>
+                    <div class="stat-label">Años de experiencia</div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-number">2</div>
+                    <div class="stat-label">Artículos publicados</div>
+                </div>
+            </div>
+        </div>
+    </section> 
+
+    <!-- Contenido principal -->
+    <div class="container">
+        <main>
+            <!-- Sección de artículos -->
+            <section id="documentos" class="blog-posts">
+                <h2 class="section-title">Documentos Recientes</h2>
+             
+                                <article class="post">
+                    <div class="post-header">
+                        <h3>ESTADÍSTICA DE INVERSIÓN PROPIA O COLECTIVA </h3>
+                        <div class="post-icon">📊</div>
+                    </div>
+                    <div class="post-content">
+                        <h2 class="post-title">Introducción análisis de instrumentos financieros</h2>
+                        <span class="post-category">Finanzas</span>
+                      <span class="post-category">Deuda</span>
+                        <div class="post-meta">
+                            <span class="icon">📅</span> Marzo 2026
+                            <span class="icon">👤</span> Act. Daniel Clement González
+                        </div>
+                        <p class="post-excerpt">Si estás dando tus primeros pasos en el mundo de las inversiones,
+                          los CETES son tu punto de partida obligado: el instrumento clásico con el que todo inversionista 
+                          en México debería familiarizarse.</p>
+                        <a href="https://drive.google.com/file/d/1xUiSsJV_nlfTwYnMRkIMabCQuUtq6McQ/view?usp=sharing" class="read-more">Leer 						documento completo</a>
+                    </div>
+                                  
+                    <!-- Anterior abajo -->                
+                                  
+                <article class="post">
+                    <div class="post-header">
+                        <h3>AUDITORÍA DE REDES </h3>
+                        <div class="post-icon">📈</div>
+                    </div>
+                    <div class="post-content">
+                        <h2 class="post-title">Introducción a documentos para análisis de redes digitales</h2>
+                        <span class="post-category">Estadística</span>
+                      <span class="post-category">Redes sociales</span>
+                        <div class="post-meta">
+                            <span class="icon">📅</span> diciembre 2025
+                            <span class="icon">👤</span> Act. Daniel Clement González
+                        </div>
+                        <p class="post-excerpt">En un entorno digital donde las plataformas sociales manejan información sensible e influyen
+						significativamente en la sociedad, se hace imperativo establecer estándares claros para su análisis y evaluación.</p>
+                        <a href="https://drive.google.com/file/d/19pR7KsmQV6OkatUFlYaW_g2PQ_l9uLbI/view?usp=sharing" class="read-more">Leer 						documento completo</a>
+                    </div>
+                </article>
+
+                <article class="post">
+                    <div class="post-header">
+                        <h3>Documentos pasados</h3>
+                        <div class="post-icon">🤖</div>
+                    </div>
+                    <div class="post-content">
+                        <h2 class="post-title">Colección de documentos publicados anteriormente</h2>
+                        <span class="post-category">Estadística</span>
+                        <div class="post-meta">
+                            <span class="icon">📅</span> Desde noviembre 2025
+                            <span class="icon">👤</span> Act. Daniel Clement González
+                        </div>
+                        <p class="post-excerpt">Implementación de algoritmos, toma de decisiones, distribución de presupuestos, etc.</p>
+                        <a href="https://drive.google.com/drive/folders/11M57lRJnATuVVPqhZ1G5oFrxz1klWrvO?usp=sharing" class="read-more">Leer artículo completo</a>
+                    </div>
+                </article>      
+            </section>
+   
+            <!-- Barra lateral -->
+            <aside class="sidebar">
+                <div class="sidebar-widget about-me">
+                    <div class="team-icon">👥</div>
+                    <h3>¿Quiénes Somos?</h3>
+                    <p>ESTANQUILLO ACT es un proyecto de investigadores especializados en estadística, matemáticas aplicadas y ciencias actuariales.</p>
+                </div>
+                <div class="sidebar-widget about-me">
+                    <div class="team-icon">🎯</div>
+                    <h3>Misión</h3>
+                    <p>Desarrollar investigación estadística actuarial de excelencia que proporcione soluciones cuantitativas innovadoras para la toma de decisiones en sectores financieros, empresariales y sociales.</p>
+                </div>
+                <div class="sidebar-widget about-me">
+                    <div class="team-icon">🔭</div>
+                    <h3>Visión</h3>
+                    <p>Ayudar a mejorar la comprensión de los análisis estadísticos avanzados y la consultoría actuarial, reconocido por nuestro rigor científico y capacidad para resolver problemas complejos. Aspiramos a construir una cultura basada en evidencia cuantitativa.</p>
+                </div>
+                <div class="sidebar-widget about-me">
+                    <div class="team-icon">💎</div>
+                    <h3>Valores</h3>
+                    <p>Rigor científico 📊, Innovación continua 🚀, Transparencia 🔍, Impacto natural 🌱, Colaboración 🤝</p>
+                </div>
+                
+                <div class="sidebar-widget categories">
+                    <h3>Categorías de Investigación</h3>
+                    <ul>
+                        <li><a href="#">Estadística Aplicada <span>2</span></a></li>
+                        <li><a href="#">Finanzas             <span>1</span></a></li>
+                        <li><a href="#">Ciencias Actuariales <span>0</span></a></li>
+                        <li><a href="#">Econometría          <span>0</span></a></li>
+                        <li><a href="#">Modelos Matemáticos  <span>0</span></a></li>
+                    </ul>
+                </div>
+                <div class="sidebar-widget">
+                    <h3>Palabras Clave</h3>
+                    <div class="tags">
+                        <a class="tag" href="#">Series Temporales</a>
+                        <a class="tag" href="#">Probabilidad</a>
+                        <a class="tag" href="#">Inferencia</a>
+                        <a class="tag" href="#">Python</a>
+                        <a class="tag" href="#">R Studio</a>
+                        <a class="tag" href="#">Simulación</a>
+                        <a class="tag" href="#">Análisis Multivariado</a>
+                        <a class="tag" href="#">Big Data</a>
+                    </div>
+                </div>   
+            </aside>
+        </main>
+    </div>
+
+    <!-- Sección de Información -->
+    <section id="informacion" class="blog-posts">
+        <div class="container">
+            <h2 class="section-title">Información Destacada</h2>
+            
+            <article class="post">
+                <div class="post-header">
+                    <h3>Nosotros</h3>
+                    <div class="post-icon">🔬</div>
+                </div>
+                <div class="post-content">
+                    <h2 class="post-title">Presentación</h2>
+                    <span class="post-category">PDF Disponible</span>
+                    <div class="post-meta">
+                        <span class="icon">📅</span> Noviembre 2025 
+                    </div>
+                    <p class="post-excerpt">Esta presentación tiene como objetivo dar explicación a las preguntas que pueden existir y el análisis de encuestas pasadas publicadas. Que pueden ser de:</p>
+                    <div class="post-features">
+                        <div class="feature">
+                            <span class="feature-icon">📊</span> Análisis de encuestas temporales.
+                        </div>
+                        <div class="feature">
+                            <span class="feature-icon">📈</span> Análisis de encuestas de crecimiento o decrecimiento.
+                        </div>
+                        <div class="feature">
+                            <span class="feature-icon">🌎</span> Análisis de encuestas de datos globales.
+                        </div>
+                    </div>
+                    <a href="https://drive.google.com/file/d/1pAqf4dYoiT5aSzbNB5YSXes8UPdq6U7s/view?usp=sharing" class="pdf-download">
+                        <span>📄</span> Presentación
+                    </a>
+                    <a href="https://drive.google.com/drive/folders/1UX_dpsuFq-o6QlK8JhQ4tiazXyLiS2tj?usp=drive_link" class="pdf-download">
+                        <span>📄</span> Análisis de encuestas pasadas
+                    </a>
+                </div>
+            </article>
+        </div>
+    </section>
+
+    <!-- Sección de Servicios -->
+    <section id="servicios" class="servicios">
+        <div class="container">
+            <h2 class="section-title">Nuestros Servicios</h2>
+            
+            <div class="servicios-grid">
+                <div class="servicio-item">
+                    <h3>📈 Consultoría de encuestas, análisis y muestreo estadístico</h3>
+                    <p>Análisis especializado de datos para optimización de procesos empresariales y toma de decisiones basada en evidencia.</p>
+                </div>
+                
+                <div class="servicio-item">
+                    <h3>🔍 🧮 Investigación con modelado actuarial de mercados con riesgos</h3>
+                    <p>Estudios estadísticos especializados con evaluación cuantitativa de riesgos financieros, modelos de pricing, identificación de oportunidades, segmentación de mercado y reservas.</p>
+                </div>
+                
+                <div class="servicio-item">
+                    <h3>🌐 Auditorías Estadísticas de redes</h3>
+                    <p>Extracción y análisis de datos de redes sociales para medir engagement, audiencia y tendencias. Métricas clave y reportes accionables para tu estrategia digital.</p>
+                </div>
+                
+                <div class="servicio-item">
+                    <h3>🏥📊 Análisis Estadístico Clínico</h3>
+                    <p>Análisis de datos médicos y resultados clínicos para estudios de investigación. Modelos predictivos y validación estadística para toma de decisiones en salud.</p>
+                </div>
+                
+                <div class="servicio-item">
+                    <h3>💻 Desarrollo de Algoritmos ML e ingeniería de datos</h3>
+                    <p>Creación de soluciones personalizadas de inteligencia artificial para problemas específicos de negocio. Desde el procesamiento de datos hasta modelos predictivos listos para producción.</p>
+                </div>
+                
+                <div class="servicio-item">
+                    <h3>💲  Estadística de inversión propia o colectiva </h3>
+                    <p>Estudios estadísticos basados en datos e indicadores de precio de acciones, fondos, predicciones del mercado.</p>
+                </div>
+                
+                <div class="servicio-item">
+                    <h3>🐶 Estudio del comportamiento de animales de compañía</h3>
+                    <p>Estudios estadísticos que buscan dar respuesta a patrones de conducta, necesidades específicas y optimización del bienestar animal mediante análisis de datos etológicos y variables ambientales.</p>
+                </div>
+                
+                <div class="servicio-item">
+                    <h3>⚾🏈⚽ Análisis táctico y de rendimiento deportivo</h3>
+                    <p>Utilizamos modelos estadísticos avanzados y machine learning para optimizar el rendimiento de equipos y atletas. Analizamos datos de tracking, métricas de desempeño y variables contextuales para identificar patrones, predecir resultados y desarrollar estrategias basadas en evidencia cuantitativa.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Newsletter -->
+    <section id="contacto" class="newsletter">
+        <div class="container">
+            <h2>Transformamos tus datos en decisiones estratégicas ¡Contáctanos!</h2>
+            <p>Completa nuestro formulario y descubre cómo la precisión estadística puede impulsar tus resultados.</p>
+            <a href="https://forms.gle/t1S5VRgzVLgsuTDKA" class="cta-button">
+                <span>📋</span> Iniciar mi proyecto
+            </a>
+        </div>
+    </section>
+
+    <!-- Pie de página -->
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-column">
+                    <h3>ESTANQUILLO ACT</h3>
+                    <p>Un espacio dedicado al análisis estadístico y la investigación actuarial desde una perspectiva multidisciplinaria.</p>
+                    <div class="risk-badge">¿Puedes asumir el riesgo?</div>
+                </div>
+                <div class="footer-column">
+                    <h3>Enlaces Rápidos</h3>
+                    <a href="#inicio">Inicio</a>
+                    <a href="#articulos">Artículos Recientes</a>
+                    <a href="#informacion">Información Destacada</a>
+                    <a href="#servicios">Servicios de Consultoría</a>
+                    <a href="#contacto">Contacto</a>
+                </div>
+                <div class="footer-column">
+                    <h3>Contacto</h3>
+                    <p>¿Tienes un proyecto en mente? Puedes mandar mensaje a:</p>
+                    <p>✉️danycle.data520@gmail.com</p>
+                    <p>📞+52 55 8558 1448</p>
+                    <p>📍Ciudad de México, México</p>
+                    <p>🕒Horario: Lunes a Viernes 8:00 - 14:00</p>
+                </div>
+            </div>
+            <div class="copyright">
+                <p>© 2025 ESTANQUILLO ACT. Todos los derechos reservados.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Smooth scroll para navegación
+        document.querySelectorAll('nav a').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const targetId = this.getAttribute('href');
+                const targetElement = document.querySelector(targetId);
+                if (targetElement) {
+                    targetElement.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+
+        // Manejo del newsletter
+        document.querySelector('.newsletter-form').addEventListener('submit', function(e) {
+            e.preventDefault();
+            const email = this.querySelector('input[type="email"]').value;
+            alert(`¡Gracias por suscribirte con el email: ${email}!`);
+            this.reset();
+        });
+    </script>
+</body>
+</html>
